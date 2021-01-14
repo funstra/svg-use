@@ -1,0 +1,13 @@
+svg {
+    background-color: seashell;
+}
+
+.stroke-0 {
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke: powderblue;
+    stroke-width: 4;
+    fill: transparent;
+}
+
+#tree-0>path {}

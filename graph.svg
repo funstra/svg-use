@@ -1,0 +1,8 @@
+<svg id="tree-0" viewBox="0 0 100% 100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+
+    <path d="     M64,64 L100,100 a64 64 0 0 0 64 64 a64 64 0 0 1 128 128 h32 v256 a32 32 0 0 0 256 256
+                    a16 16 0 0 1 32 32 L512 768" class="stroke-0" />
+    <circle cx="512" cy="768" r="32" class="stroke-0"/>
+
+</svg>
