@@ -7,7 +7,7 @@ window.onload = e => {
     window.onresize = e => {
         cnv.width = cnv.clientWidth
         cnv.height = cnv.clientHeight
-        console.log(cnv.width, cnv.height)
+        draw(t)
     }
 
     let mouse = {}
@@ -19,35 +19,44 @@ window.onload = e => {
     let ctx = cnv.getContext('2d')
 
 
-    function grid({ xOffset, yOffset, x, y, w, h }, f, g) {
+    function grid({ xOffset, yOffset, x, y, w, h }, fArr) {
+
         for (let i = 0; i < x; i++) {
+            ctx.moveTo((i / x) * w, 0)
             for (let j = 0; j < y; j++) {
-                f((i / x) * w + xOffset, (j / y) * h + yOffset + Math.sin((i/x*Math.PI + t*0.05)) * 32)
+                let f = fArr[Math.floor(Math.random() * fArr.length)]
+                ctx.lineWidth = Math.floor(Math.random()*2)
+                if (j < 4) {
+                    f((i / x) * h + xOffset(i / x, 4, 8, 0.1), (j / y) * w)
+                }
+                f((i / x) * h, (j / y) * w + 32)
             }
         }
     }
 
     function draw() {
-        ctx.beginPath()
         let f = (x, y) => ctx.strokeRect(x, y, 16, 4)
+        let g = (x, y) => ctx.lineTo(x, y)
+        let h = (x, y) => ctx.fillRect(x, y, 4, 4)
+        let offsetF = (step, freq, amp, delta) => Math.sin((step * Math.PI * freq + t * delta)) * amp
+        ctx.beginPath()
         grid(
             {
-                xOffset: 0,
-                yOffset: 0,
-                x: 128, y: 16,
-                w: cnv.width, h: cnv.height,
+                xOffset: offsetF,
+                yOffset: () => { },
+                x: 64, y: 64,
+                w: cnv.height, h: cnv.width,
             },
-            f)
-        ctx.lineWidth = 2
+            [f, g, h])
         ctx.lineCap = 'round'
         ctx.stroke()
+
     }
     function animate() {
         t++
-        console.log(t)
         ctx.clearRect(0, 0, cnv.width, cnv.height)
         draw(t)
-        requestAnimationFrame(animate)
+        // requestAnimationFrame(animate)
     }
 
     animate()
