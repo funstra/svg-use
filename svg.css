@@ -1,13 +1,52 @@
 svg {
-    background-color: seashell;
-}
-
-.stroke-0 {
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke: powderblue;
-    stroke-width: 4;
+    /* background-color: seashell; */
     fill: transparent;
 }
 
-#tree-0>path {}
+:root {
+    --col-0: rgb(253, 172, 22);
+    --col-1: rgb(160, 120, 194);
+}
+
+.col-0 {
+    fill: var(--col-0);
+    stroke: var(--col-1);
+}
+
+.col-1 {
+    fill: var(--col-1);
+    stroke: var(--col-0);
+}
+
+[class^="stroke"] {
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    animation: dashOffset 4s linear infinite;
+    stroke-dasharray: 40;
+}
+
+.stroke-0 {
+    stroke-width: 8;
+}
+
+.stroke-1 {
+    stroke-width: 4;
+}
+
+circle {
+    opacity: 0.85;
+    mix-blend-mode: color-burn;
+}
+
+path {
+    opacity: 0.5;
+}
+
+@keyframes dashOffset {
+    0% {
+        stroke-dashoffset: 0;
+    }
+    100% {
+        stroke-dashoffset: 80;
+    }
+}
