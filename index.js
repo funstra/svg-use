@@ -25,7 +25,7 @@ window.onload = e => {
             ctx.moveTo((i / x) * w, 0)
             for (let j = 0; j < y; j++) {
                 let f = fArr[Math.floor(Math.random() * fArr.length)]
-                ctx.lineWidth = Math.floor(Math.random()*2)
+                ctx.lineWidth = Math.floor(Math.random() * 2)
                 if (j < 4) {
                     f((i / x) * h + xOffset(i / x, 4, 8, 0.1), (j / y) * w)
                 }
@@ -35,6 +35,7 @@ window.onload = e => {
     }
 
     function draw() {
+        ctx.clearRect(0, 0, cnv.width, cnv.height)
         let f = (x, y) => ctx.strokeRect(x, y, 16, 4)
         let g = (x, y) => ctx.lineTo(x, y)
         let h = (x, y) => ctx.fillRect(x, y, 4, 4)
@@ -54,7 +55,6 @@ window.onload = e => {
     }
     function animate() {
         t++
-        ctx.clearRect(0, 0, cnv.width, cnv.height)
         draw(t)
         // requestAnimationFrame(animate)
     }
